@@ -7,7 +7,7 @@ import Navbar from './components/main/Navbar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'ES SADKI Mohammed',
+  title: 'MebPort',
   description: 'Portfolio',
 }
 
