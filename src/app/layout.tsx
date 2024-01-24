@@ -6,8 +6,21 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Meb Port",
-  description: "sdk-meb, about, general, portfolio",
-  icons: {},
+  description: "sdk-meb, about, general, portfolio, terminal, iterm, termix",
+  icons: {
+    icon: [
+      {
+        pathname: "/",
+        url: "/portfolio.ico",
+        href: "/portfolio.ico",
+      },
+      {
+        pathname: "/portfolio",
+        url: "/portfolio.ico",
+        href: "/portfolio.ico",
+      },
+    ],
+  },
 };
 
 const RootLayout = ({
