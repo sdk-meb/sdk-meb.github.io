@@ -17,7 +17,9 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <body className={inter.className + 'min-w-sscreen min-h-screen bg-gray-900'}>
+      <body
+        className={inter.className + "min-w-sscreen min-h-screen bg-gray-900"}
+      >
         <main className={"w-full h-full"}>{children}</main>
       </body>
     </html>

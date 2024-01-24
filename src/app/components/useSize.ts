@@ -6,22 +6,22 @@ interface Devices {
   isTab: boolean;
   isMobile: boolean;
 }
+
 type UseSize = {
   width: number;
   height: number;
 } & Devices;
 
-type MobileSize = ["320", "480"] | ["375", "667"] | ["414", "736"]; // px
-type TablitteSize = ["768", "1024"] | ["800", "1280"] | ["1024", "768"];
+type MobileSize = [320, 480] | [375, 667] | [414, 736]; // px
+type TabletSize = [768, 1024] | [800, 1280] | [1024, 768];
+
 /**
- *
- *  use Window Dimension
- *
- * */
+ * use Window Dimension
+ */
 const useSize = () => {
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
-  const [{ isMobile, isTab }, setDevise] = useState<Devices>({
+  const [height, setHeight] = useState<number>(0);
+  const [width, setWidth] = useState<number>(0);
+  const [{ isMobile, isTab }, setDevice] = useState<Devices>({
     isMobile: false,
     isTab: false,
   });
@@ -29,17 +29,25 @@ const useSize = () => {
   const updateDimensions = () => {
     setWidth(window.innerWidth);
     setHeight(window.innerHeight);
-    const isMobile: boolean = width < 414;
-    const isTab: boolean = !isMobile && width < 1024;
-    setDevise({ isMobile, isTab });
+
+    const mobileThreshold = 414;
+    const tabletThreshold = 1024;
+
+    const isMobile: boolean = window.innerWidth < mobileThreshold;
+    const isTab: boolean = !isMobile && window.innerWidth < tabletThreshold;
+
+    setDevice({ isMobile, isTab });
   };
 
   useEffect(() => {
+    if (!window) return;
+
+    updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
-  }, [window.innerWidth]);
+  }, []);
 
-  return { width, height, isMobile, isTab };
+  return { width, height, isMobile, isTab } as UseSize;
 };
 
 export default useSize;
